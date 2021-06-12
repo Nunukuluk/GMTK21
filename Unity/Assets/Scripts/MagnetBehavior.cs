@@ -6,8 +6,8 @@ public class MagnetBehavior : MonoBehaviour
 {
     public float strength = 0.2f;
     public float radius = 1f;
-    public GameObject player;
 
+    private GameObject player;
     private GameObject positive;
     private GameObject negative;
 
