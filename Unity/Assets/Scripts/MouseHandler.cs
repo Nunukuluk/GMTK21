@@ -62,7 +62,7 @@ public class MouseHandler : MonoBehaviour
                 if (rotatingMagnet)
                 {
                     Debug.Log("draging magnet");
-                    hit1.transform.gameObject.GetComponent<MagnetBehavior>().Dragging(hit1.point);
+                    hit1.transform.gameObject.GetComponent<MagnetBehavior>()?.Dragging(hit1.point);
                 }
             }
         }
