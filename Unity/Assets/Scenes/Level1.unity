@@ -123,6 +123,43 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &1149083613 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3310851975114002173, guid: dd2c563f1518b514d86722b227204480, type: 3}
+  m_PrefabInstance: {fileID: 3310851974848229295}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1149083615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1149083613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cedb80a3220cd474a9a7cebb2db86733, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1664065815 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7997455797705353749, guid: 276fecb4d34616d4fac0f8eeea118085, type: 3}
+  m_PrefabInstance: {fileID: 7997455796176210835}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1664065821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1664065815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd771f829a76f4d3d8b7232b9042719a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  active: 0
+  rotation: 0
+  radius: 1
 --- !u!1001 &3310851974848229295
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -178,7 +215,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelPrefab
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 3310851974471940600, guid: dd2c563f1518b514d86722b227204480, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.19
+      objectReference: {fileID: 0}
+    - target: {fileID: 3310851974471940604, guid: dd2c563f1518b514d86722b227204480, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 3310851974545513474, guid: dd2c563f1518b514d86722b227204480, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: dd2c563f1518b514d86722b227204480, type: 3}
 --- !u!1001 &7997455796176210835
 PrefabInstance:
@@ -187,17 +233,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7997455796930964826, guid: 276fecb4d34616d4fac0f8eeea118085, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7997455797665885326, guid: 276fecb4d34616d4fac0f8eeea118085, type: 3}
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7997455797665885326, guid: 276fecb4d34616d4fac0f8eeea118085, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 6.49
       objectReference: {fileID: 0}
     - target: {fileID: 7997455797665885326, guid: 276fecb4d34616d4fac0f8eeea118085, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 4.57
       objectReference: {fileID: 0}
     - target: {fileID: 7997455797665885326, guid: 276fecb4d34616d4fac0f8eeea118085, type: 3}
       propertyPath: m_LocalPosition.z
@@ -235,5 +285,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: MagnetPrefab
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7997455797705353749, guid: 276fecb4d34616d4fac0f8eeea118085, type: 3}
+      propertyPath: m_TagString
+      value: Magnet
+      objectReference: {fileID: 0}
+    - target: {fileID: 7997455797705353752, guid: 276fecb4d34616d4fac0f8eeea118085, type: 3}
+      propertyPath: radius
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7997455797705353755, guid: 276fecb4d34616d4fac0f8eeea118085, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 7997455796930964824, guid: 276fecb4d34616d4fac0f8eeea118085, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 276fecb4d34616d4fac0f8eeea118085, type: 3}
