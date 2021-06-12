@@ -19,7 +19,7 @@ public class MagnetBehavior : MonoBehaviour
     private Vector3 playerVec; // Vector from center to player
 
     private float minDot = 0.5f;
-    private float minDist = 0.1f;
+    private float minDist;
 
     private bool magnetEnabled = true;
 
@@ -31,13 +31,21 @@ public class MagnetBehavior : MonoBehaviour
         positiveGO = GameObject.Find("PositiveCube");
         negativeGO = GameObject.Find("NegativeCube");
         radiusGO = GameObject.Find("Radius");
+        Debug.Log(positiveGO.transform.lossyScale.y);
+        minDist = positiveGO.transform.lossyScale.y * 1.5f;
         SetRadius();
         UpdateDirectionVectors();
     }
 
+    private void Update()
+    {
+        if(magnetEnabled)
+            CalculateMagnetism();
+    }
+
     public void Toggle()
     {
-        this.magnetEnabled = !this.magnetEnabled;
+        magnetEnabled = !magnetEnabled;
         positiveGO.GetComponent<MagnetMatHandler>()?.Enable(this.magnetEnabled);
         negativeGO.GetComponent<MagnetMatHandler>()?.Enable(this.magnetEnabled);
     }
@@ -84,13 +92,9 @@ public class MagnetBehavior : MonoBehaviour
 
     public void Dragging(Vector3 mousePos)
     {
-        if (!magnetEnabled)
-            return;
-
         mousePos.z = this.transform.position.z;
         this.transform.LookAt(mousePos);
         this.transform.Rotate(new Vector3(90f, 0f, 0f));
-        CalculateMagnetism();
     }
 
     void Pull(float amount)
