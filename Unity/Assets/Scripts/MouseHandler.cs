@@ -30,15 +30,18 @@ public class MouseHandler : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0))
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-
-            if ((Physics.Raycast(ray, out hit)) && (hit.transform.tag == "Magnet"))
+            if (Time.timeSinceLevelLoad - _pressedTime < _minimumHoldDuration)
             {
-                hit.transform.gameObject.GetComponent<MagnetBehavior>().Toggle();
-            }
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
 
-            rotatingMagnet = false;
+                if ((Physics.Raycast(ray, out hit)) && (hit.transform.tag == "Magnet"))
+                {
+                    hit.transform.gameObject.GetComponent<MagnetBehavior>().Toggle();
+                }
+
+                rotatingMagnet = false;
+            }  
         }
 
         if (Input.GetMouseButton(0))

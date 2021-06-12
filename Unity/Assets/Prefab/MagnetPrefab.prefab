@@ -273,7 +273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adc9558f2020a45419616ea1c9fb3feb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  strength: 0.5
+  strength: 2
   radius: 10
 --- !u!114 &2178122679245621150
 MonoBehaviour:
@@ -287,9 +287,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd771f829a76f4d3d8b7232b9042719a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: 0
-  rotation: 0
-  radius: 1
 --- !u!1 &2178122679444979786
 GameObject:
   m_ObjectHideFlags: 0
