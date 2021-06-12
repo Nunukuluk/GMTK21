@@ -7,8 +7,12 @@ public class MouseHandler : MonoBehaviour
     private float _pressedTime;
     private bool _hold;
     private bool rotatingMagnet;
+    private bool mouseOver;
 
     private GameObject FoundObject;
+
+    Ray _ray;
+    RaycastHit _hit;
 
     // Use this for initialization  
     void Start ()
@@ -31,7 +35,6 @@ public class MouseHandler : MonoBehaviour
 
             if ((Physics.Raycast(ray, out hit)) && (hit.transform.tag == "Magnet"))
             {
-                Debug.Log(string.Format("hit magnet at {0}", (hit.point)));
                 hit.transform.gameObject.GetComponent<MagnetBehavior>().Toggle();
             }
 
@@ -58,22 +61,31 @@ public class MouseHandler : MonoBehaviour
                 if (rotatingMagnet)
                 {
                     FoundObject.GetComponent<MagnetBehavior>().Dragging(worldPoint);
-                    Debug.Log("draging magnet");
                 }
             }
         }
 
-        //ifMouseOver();
+        ShowRadius();
     }
 
-    /*
-    void ifMouseOver()
+    void ShowRadius()
     {
         _ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit _hit;
+
         if (Physics.Raycast(_ray, out _hit))
         {
-            GameObject.Find(_hit.collider.gameObject.name).GetComponent<MagnetBehavior>()?.ToggleRadius();
+            if (_hit.transform.tag == "Magnet" && !mouseOver)
+            {
+                FoundObject = GameObject.Find(_hit.collider.gameObject.name);
+                FoundObject.GetComponent<MagnetBehavior>().ToggleRadius();
+                mouseOver = true;
+            }
+        }
+        else if (mouseOver)
+        {
+            FoundObject.GetComponent<MagnetBehavior>().ToggleRadius();
+            mouseOver = false;
         }
     }
-    */
 }
