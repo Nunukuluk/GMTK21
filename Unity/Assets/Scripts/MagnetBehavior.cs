@@ -92,9 +92,6 @@ public class MagnetBehavior : MonoBehaviour
 
     public void Dragging(Vector3 mousePos)
     {
-        if (!magnetEnabled)
-            return;
-
         mousePos.z = this.transform.position.z;
         this.transform.LookAt(mousePos);
         this.transform.Rotate(new Vector3(90f, 0f, 0f));
