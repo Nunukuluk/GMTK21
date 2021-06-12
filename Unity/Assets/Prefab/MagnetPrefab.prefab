@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 18a90c4831da3e1478204c6e5d70ffea, type: 2}
+  - {fileID: 2100000, guid: 55dd045df707ae94cb61389ee2707fa6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -275,6 +275,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   strength: 0.5
   radius: 10
+  magnetEnabled: 0
 --- !u!114 &2178122679245621150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -287,9 +288,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd771f829a76f4d3d8b7232b9042719a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: 0
-  rotation: 0
-  radius: 1
 --- !u!1 &2178122679444979786
 GameObject:
   m_ObjectHideFlags: 0
@@ -433,7 +431,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9216866b0e4366b4d850cb1de6ab2902, type: 2}
+  - {fileID: 2100000, guid: ea10a2148f9b6b848830759e80a4999e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

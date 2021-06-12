@@ -6,6 +6,7 @@ public class MagnetBehavior : MonoBehaviour
 {
     public float strength = 0.2f;
     public float radius = 1f;
+    public bool magnetEnabled = false;
 
     private GameObject player;
     private GameObject positiveDirGO;
@@ -21,8 +22,6 @@ public class MagnetBehavior : MonoBehaviour
     private float minDot = 0.5f;
     private float minDist;
 
-    private bool magnetEnabled = true;
-
     void Start()
     {
         player = GameObject.FindWithTag("Player");
@@ -31,7 +30,6 @@ public class MagnetBehavior : MonoBehaviour
         positiveGO = GameObject.Find("PositiveCube");
         negativeGO = GameObject.Find("NegativeCube");
         radiusGO = GameObject.Find("Radius");
-        Debug.Log(positiveGO.transform.lossyScale.y);
         minDist = positiveGO.transform.lossyScale.y * 1.5f;
         SetRadius();
         UpdateDirectionVectors();
