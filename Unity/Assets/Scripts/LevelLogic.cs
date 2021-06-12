@@ -26,15 +26,20 @@ public class LevelLogic : MonoBehaviour
         currentScene += 1;
         if (canvas != null)
             canvas.SetActive(false);
-        StartCoroutine(FadeTo(1f, 2f));
+        StartCoroutine(FadeTo(1f, 1f));
         while (fading) yield return null;
+        yield return new WaitForSeconds(1.5f);
         SceneManager.LoadScene(currentScene);
-        StartCoroutine(FadeTo(0f, 2f));
+        StartCoroutine(FadeTo(0f, 1f));
     }
 
     public void Exit()
     {
-        Application.Quit();
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+         Application.Quit();
+#endif
     }
 
     IEnumerator FadeTo(float aValue, float aTime)
