@@ -10,6 +10,7 @@ public class MagnetBehavior : MonoBehaviour
     private GameObject player;
     private GameObject positive;
     private GameObject negative;
+    private GameObject radiusGO;
 
     private Vector3 posVec; // Vector from center to positive direction
     private Vector3 negVec; // Vector from center to negative direction
@@ -23,14 +24,27 @@ public class MagnetBehavior : MonoBehaviour
     void Start()
     {
         player = GameObject.FindWithTag("Player");
-        positive = GameObject.Find("Pos");
-        negative = GameObject.Find("Neg");
+        positive = GameObject.Find("Positive");
+        negative = GameObject.Find("Negative");
+        radiusGO = GameObject.Find("Radius");
+        SetRadius();
         UpdateDirectionVectors();
     }
 
     public void Toggle()
     {
         this.magnetEnabled = !this.magnetEnabled;
+    }
+
+    public void ToggleRadius()
+    {
+        radiusGO.SetActive(!radiusGO.activeSelf);
+    }
+
+    void SetRadius()
+    {
+        radiusGO.transform.localScale = new Vector3(radius * 2f, radius * 2f, radiusGO.transform.localScale.z);
+        ToggleRadius();
     }
 
     void CalculateMagnetism()
