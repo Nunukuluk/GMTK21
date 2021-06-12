@@ -38,12 +38,13 @@ public class MagnetBehavior : MonoBehaviour
 
     public void ToggleRadius()
     {
-        // Toggle radius
+        radiusGO.SetActive(!radiusGO.activeSelf);
     }
 
     void SetRadius()
     {
         radiusGO.transform.localScale = new Vector3(radius * 2f, radius * 2f, radiusGO.transform.localScale.z);
+        ToggleRadius();
     }
 
     void CalculateMagnetism()

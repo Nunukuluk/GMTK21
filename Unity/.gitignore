@@ -8,6 +8,7 @@
 /[Bb]uild/
 /[Bb]uilds/
 /[Ll]ogs/
+/[Uu]serSettings/
 /[Mm]emoryCaptures/
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
@@ -57,4 +58,10 @@ sysinfo.txt
 
 # Crashlytics generated file
 crashlytics-build.properties
+
+/Assets/Settings/UniversalRP-LowQuality.asset
+/Assets/Settings/UniversalRP-MediumQuality.asset
+/UserSettings/EditorUserSettings.asset
+/ProjectSettings/URPProjectSettings.asset
+
 
