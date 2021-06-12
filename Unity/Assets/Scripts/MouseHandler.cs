@@ -3,20 +3,20 @@ using System.Collections;
 
 public class MouseHandler : MonoBehaviour
 {
-
-    [HideInInspector] public int active = 0;
-    [HideInInspector] public float rotation = 0;
-    [HideInInspector] public int radius = 1;
-
-    private const float _minimumHoldDuration = 0.25f;
+    private const float _minimumHoldDuration = 0.20f;
     private float _pressedTime;
     private bool _hold;
     private bool rotatingMagnet;
-    
+    private bool mouseOver;
+
+    private GameObject FoundObject;
+
+    Ray _ray;
+    RaycastHit _hit;
+
     // Use this for initialization  
     void Start ()
     {
-        _hold = false;
         rotatingMagnet = false;
     }
 
@@ -26,29 +26,27 @@ public class MouseHandler : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             _pressedTime = Time.timeSinceLevelLoad;
-            _hold = false;
         }
 
         if (Input.GetMouseButtonUp(0))
         {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
 
-            if (!_hold)
+            if ((Physics.Raycast(ray, out hit)) && (hit.transform.tag == "Magnet"))
             {
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
-                Debug.Log("!hold");
-                if ((Physics.Raycast(ray, out hit)) && (hit.transform.tag == "Magnet"))
-                {
-                    Debug.Log(string.Format("hit magnet at {0}", (hit.point)));
-                    hit.transform.gameObject.GetComponent<MagnetBehavior>().Toggle();
-                }
+                hit.transform.gameObject.GetComponent<MagnetBehavior>().Toggle();
             }
-            _hold = false;
+
             rotatingMagnet = false;
         }
 
         if (Input.GetMouseButton(0))
         {
+            Vector3 v3 = Input.mousePosition;
+            v3.z = 10;
+            Vector3 worldPoint = Camera.main.ScreenToWorldPoint(v3);
+
             if (Time.timeSinceLevelLoad - _pressedTime > _minimumHoldDuration)
             {
                 Ray ray1 = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -56,15 +54,38 @@ public class MouseHandler : MonoBehaviour
 
                 if ((Physics.Raycast(ray1, out hit1)) && (hit1.transform.tag == "Magnet"))
                 {
+                    FoundObject = GameObject.Find(hit1.collider.gameObject.name);
                     rotatingMagnet = true;
                 }
 
                 if (rotatingMagnet)
                 {
-                    Debug.Log("draging magnet");
-                    hit1.transform.gameObject.GetComponent<MagnetBehavior>()?.Dragging(hit1.point);
+                    FoundObject.GetComponent<MagnetBehavior>().Dragging(worldPoint);
                 }
             }
         }
-    }    
+
+        ShowRadius();
+    }
+
+    void ShowRadius()
+    {
+        _ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit _hit;
+
+        if (Physics.Raycast(_ray, out _hit))
+        {
+            if (_hit.transform.tag == "Magnet" && !mouseOver)
+            {
+                FoundObject = GameObject.Find(_hit.collider.gameObject.name);
+                FoundObject.GetComponent<MagnetBehavior>().ToggleRadius();
+                mouseOver = true;
+            }
+        }
+        else if (mouseOver)
+        {
+            FoundObject.GetComponent<MagnetBehavior>().ToggleRadius();
+            mouseOver = false;
+        }
+    }
 }
