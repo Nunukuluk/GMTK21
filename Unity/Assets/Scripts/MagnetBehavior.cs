@@ -8,8 +8,10 @@ public class MagnetBehavior : MonoBehaviour
     public float radius = 1f;
 
     private GameObject player;
-    private GameObject positive;
-    private GameObject negative;
+    private GameObject positiveDirGO;
+    private GameObject negativeDirGO;
+    private GameObject positiveGO;
+    private GameObject negativeGO;
     private GameObject radiusGO;
 
     private Vector3 posVec; // Vector from center to positive direction
@@ -24,8 +26,10 @@ public class MagnetBehavior : MonoBehaviour
     void Start()
     {
         player = GameObject.FindWithTag("Player");
-        positive = GameObject.Find("Positive");
-        negative = GameObject.Find("Negative");
+        positiveDirGO = GameObject.Find("Positive");
+        negativeDirGO = GameObject.Find("Negative");
+        positiveGO = GameObject.Find("PositiveCube");
+        negativeGO = GameObject.Find("NegativeCube");
         radiusGO = GameObject.Find("Radius");
         SetRadius();
         UpdateDirectionVectors();
@@ -34,6 +38,8 @@ public class MagnetBehavior : MonoBehaviour
     public void Toggle()
     {
         this.magnetEnabled = !this.magnetEnabled;
+        positiveGO.GetComponent<MagnetMatHandler>()?.Enable(this.magnetEnabled);
+        negativeGO.GetComponent<MagnetMatHandler>()?.Enable(this.magnetEnabled);
     }
 
     public void ToggleRadius()
@@ -66,10 +72,10 @@ public class MagnetBehavior : MonoBehaviour
 
     void UpdateDirectionVectors()
     {
-        posVec = positive.transform.position - this.transform.position;
+        posVec = positiveDirGO.transform.position - this.transform.position;
         posVec.Normalize();
 
-        negVec = negative.transform.position - this.transform.position;
+        negVec = negativeDirGO.transform.position - this.transform.position;
         negVec.Normalize();
 
         playerVec = player.transform.position - this.transform.position;
