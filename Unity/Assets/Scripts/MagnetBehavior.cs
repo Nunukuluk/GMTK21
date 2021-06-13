@@ -97,7 +97,7 @@ public class MagnetBehavior : MonoBehaviour
     void Pull(float amount)
     {
         if (Mathf.Abs(Vector3.Distance(this.transform.position, player.transform.position)) <= minDist ||
-            Mathf.Abs(Vector3.Distance(this.transform.position, player.transform.position)) >= radius + 0.01)
+            Mathf.Abs(Vector3.Distance(this.transform.position, player.transform.position)) >= radius + 0.05)
             return;
 
         Vector3 target = - playerVec;
@@ -107,7 +107,7 @@ public class MagnetBehavior : MonoBehaviour
 
     void Push(float amount)
     {
-        if (Mathf.Abs(Vector3.Distance(this.transform.position, player.transform.position)) <= minDist - 0.01 ||
+        if (Mathf.Abs(Vector3.Distance(this.transform.position, player.transform.position)) <= minDist - 0.05 ||
             Mathf.Abs(Vector3.Distance(this.transform.position, player.transform.position)) >= radius)
             return;
 
