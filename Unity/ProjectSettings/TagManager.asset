@@ -10,6 +10,9 @@ TagManager:
   - Fire
   - Charger
   - GoalUI
+  - StartUI
+  - Level
+  - LevelText
   layers:
   - Default
   - TransparentFX
