@@ -308,7 +308,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adc9558f2020a45419616ea1c9fb3feb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  strength: 2
+  strength: 2.4
   radius: 10
   magnetEnabled: 0
   radiusGO: {fileID: 2178122679444979786}
