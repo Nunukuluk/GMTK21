@@ -9,6 +9,7 @@ public class LevelLogic : MonoBehaviour
     public GameObject userScreen;
     private GameObject canvas;
     private bool fading = false;
+    public int numScenes = 3;
 
     private void Start()
     {
@@ -42,18 +43,38 @@ public class LevelLogic : MonoBehaviour
     IEnumerator ChangeSceneCR(int scene)
     {
         Debug.Log("Changing Scene...");
-        if (canvas != null)
-            canvas.SetActive(false);
+        GameObject[] startCanvas = GameObject.FindGameObjectsWithTag("StartUI");
+        if (startCanvas != null)
+            foreach(GameObject go in startCanvas)
+                go.SetActive(false);
         GameObject UI = GameObject.FindGameObjectWithTag("GoalUI");
-        if (UI != null)  Debug.Log(UI.gameObject.transform.name);
         if (UI != null)
             Destroy(UI);
-
         StartCoroutine(FadeTo(1f, 1f));
         while (fading) yield return null;
         yield return new WaitForSeconds(1.5f);
         SceneManager.LoadScene(scene);
+        setLevelNum(scene);
         StartCoroutine(FadeTo(0f, 1f));
+    }
+
+    public void setLevelNum(int scene)
+    {
+        GameObject levelText = GameObject.FindWithTag("LevelText");
+        GameObject levelNumText = GameObject.FindWithTag("Level");
+        if (levelNumText == null || levelText == null)
+            return;
+
+        if (scene == numScenes + 1)
+        {
+            levelText.GetComponent<TMPro.TextMeshProUGUI>().text = " ";
+            levelNumText.GetComponent<TMPro.TextMeshProUGUI>().text = " ";
+        }
+        else
+        {
+            levelText.GetComponent<TMPro.TextMeshProUGUI>().text = "Level ";
+            levelNumText.GetComponent<TMPro.TextMeshProUGUI>().text = scene.ToString() + "/" + numScenes.ToString();
+        }
     }
 
     public void Exit()
