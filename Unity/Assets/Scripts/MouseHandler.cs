@@ -8,8 +8,12 @@ public class MouseHandler : MonoBehaviour
     private bool _hold;
     private bool rotatingMagnet;
     private bool mouseOver;
+    private int active = 0;
+
+    private GameObject[] magnets; // create an array
 
     private GameObject FoundObject;
+    private GameObject player;
 
     Ray _ray;
     RaycastHit _hit;
@@ -18,6 +22,8 @@ public class MouseHandler : MonoBehaviour
     void Start ()
     {
         rotatingMagnet = false;
+        magnets = GameObject.FindGameObjectsWithTag("Magnet");
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame  
@@ -56,8 +62,7 @@ public class MouseHandler : MonoBehaviour
 
                 if ((Physics.Raycast(ray1, out hit1)) && (hit1.transform.tag == "Magnet"))
                 {
-                    FoundObject = hit1.transform.gameObject;// GameObject.Find(hit1.collider.gameObject.name);
-                    Debug.Log(FoundObject.name);
+                    FoundObject = hit1.transform.gameObject; // GameObject.Find(hit1.collider.gameObject.name);
                     rotatingMagnet = true;
                 }
 
@@ -69,6 +74,8 @@ public class MouseHandler : MonoBehaviour
         }
 
         ShowRadius();
+
+        ResetPlayer(magnets);
     }
 
     void ShowRadius()
@@ -81,7 +88,6 @@ public class MouseHandler : MonoBehaviour
             if (_hit.transform.tag == "Magnet" && !mouseOver)
             {
                 FoundObject = _hit.transform.gameObject; //GameObject.Find(_hit.collider.gameObject.name);
-                Debug.Log(FoundObject.name);
                 FoundObject.GetComponent<MagnetBehavior>().ToggleRadius();
                 mouseOver = true;
             }
@@ -90,6 +96,25 @@ public class MouseHandler : MonoBehaviour
         {
             FoundObject.GetComponent<MagnetBehavior>().ToggleRadius();
             mouseOver = false;
+        }
+    }
+
+    void ResetPlayer(GameObject[] magnets)
+    {
+        active = 0;
+
+        foreach (GameObject m in magnets)
+        {
+            if (m.GetComponent<MagnetBehavior>().attraction)
+            {
+                active += 1;
+            }
+        }
+
+        if (active == 0)
+        {
+            Debug.Log("ResetPlayer is called");
+            player.GetComponent<CharacterBehavior>().ResetPlayer();
         }
     }
 }

@@ -15,6 +15,14 @@ public class LevelLogic : MonoBehaviour
         canvas = GameObject.FindGameObjectWithTag("Canvas");
     }
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            ReloadScene();
+        }
+    }
+
     public void ReloadScene()
     {
         StartCoroutine(ChangeSceneCR(currentScene));
@@ -40,11 +48,11 @@ public class LevelLogic : MonoBehaviour
 
     public void Exit()
     {
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#else
-         Application.Quit();
-#endif
+        #if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false;
+        #else
+                 Application.Quit();
+        #endif
     }
 
     IEnumerator FadeTo(float aValue, float aTime)

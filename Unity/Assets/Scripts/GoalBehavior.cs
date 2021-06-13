@@ -30,16 +30,19 @@ public class GoalBehavior : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        elapsed += Time.fixedDeltaTime;
+            private void OnTriggerStay2D(Collider2D other)
+	{
+		if (other.tag == "Charger")
+		{
+			elapsed += Time.fixedDeltaTime;
 
-        if (elapsed > sliderInstantiateTime)
-        {
-            chargingScreen.SetActive(true);
-            slider.value += incrementInterval;
-        }
-    }
+			if (elapsed > sliderInstantiateTime)
+			{
+				chargingScreen.SetActive(true);
+				slider.value += incrementInterval;
+			}
+		}
+	}
 
     private void OnTriggerExit2D(Collider2D other)
     {

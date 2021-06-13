@@ -22,6 +22,8 @@ public class MagnetBehavior : MonoBehaviour
     private float minDot = 0.5f;
     private float minDist;
 
+    [HideInInspector] public bool attraction = false;
+
     void Start()
     {
         player = GameObject.FindWithTag("Player");
@@ -38,6 +40,7 @@ public class MagnetBehavior : MonoBehaviour
     {
         if(magnetEnabled)
             CalculateMagnetism();
+
     }
 
     public void Toggle()
@@ -65,14 +68,27 @@ public class MagnetBehavior : MonoBehaviour
         float posDot = Vector3.Dot(posVec, playerVec);
         float negDot = Vector3.Dot(negVec, playerVec);
 
-        if(posDot >= minDot)
+        if((posDot >= minDot) &&
+            !(Mathf.Abs(Vector3.Distance(this.transform.position, player.transform.position)) <= minDist) &&
+            !(Mathf.Abs(Vector3.Distance(this.transform.position, player.transform.position)) >= radius + 0.05))
         {
             Pull(posDot);
+            attraction = true;
             return;
         }
 
-        else if(negDot >= minDot)
+        else if((negDot >= minDot) &&
+            !(Mathf.Abs(Vector3.Distance(this.transform.position, player.transform.position)) <= minDist - 0.05) &&
+            !(Mathf.Abs(Vector3.Distance(this.transform.position, player.transform.position)) >= radius))
+        {
             Push(negDot);
+            attraction = true;
+        }
+            
+        else
+        {
+            attraction = false;
+        }
     }
 
     void UpdateDirectionVectors()
@@ -96,21 +112,17 @@ public class MagnetBehavior : MonoBehaviour
 
     void Pull(float amount)
     {
-        if (Mathf.Abs(Vector3.Distance(this.transform.position, player.transform.position)) <= minDist ||
-            Mathf.Abs(Vector3.Distance(this.transform.position, player.transform.position)) >= radius + 0.05)
-            return;
-
         Vector3 target = - playerVec;
         player.transform.position += target * strength * amount * Time.deltaTime;
+        player.GetComponent<Rigidbody2D>().MovePosition(player.GetComponent<Rigidbody2D>().position + new Vector2(target.x, target.y) * strength * amount * Time.fixedDeltaTime);
+        //player.transform.LookAt(positiveDirGO.transform.position);
     }
 
     void Push(float amount)
     {
-        if (Mathf.Abs(Vector3.Distance(this.transform.position, player.transform.position)) <= minDist - 0.05 ||
-            Mathf.Abs(Vector3.Distance(this.transform.position, player.transform.position)) >= radius)
-            return;
-
         Vector3 target = playerVec;
         player.transform.position += target * strength * amount * Time.deltaTime;
+        player.GetComponent<Rigidbody2D>().MovePosition(player.GetComponent<Rigidbody2D>().position + new Vector2(target.x, target.y) * strength * amount * Time.fixedDeltaTime);
+        //player.transform.LookAt(negativeDirGO.transform.position);
     }
 }
