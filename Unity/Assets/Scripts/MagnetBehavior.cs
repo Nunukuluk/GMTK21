@@ -13,7 +13,7 @@ public class MagnetBehavior : MonoBehaviour
     private GameObject negativeDirGO;
     private GameObject positiveGO;
     private GameObject negativeGO;
-    private GameObject radiusGO;
+    public GameObject radiusGO;
 
     private Vector3 posVec; // Vector from center to positive direction
     private Vector3 negVec; // Vector from center to negative direction
@@ -25,11 +25,10 @@ public class MagnetBehavior : MonoBehaviour
     void Start()
     {
         player = GameObject.FindWithTag("Player");
-        positiveDirGO = GameObject.Find("Positive");
-        negativeDirGO = GameObject.Find("Negative");
-        positiveGO = GameObject.Find("PositiveCube");
-        negativeGO = GameObject.Find("NegativeCube");
-        radiusGO = GameObject.Find("Radius");
+        positiveDirGO = this.gameObject.transform.Find("Positive").gameObject; 
+        negativeDirGO = this.gameObject.transform.Find("Negative").gameObject; 
+        positiveGO = this.gameObject.transform.Find("PositiveCube").gameObject; 
+        negativeGO = this.gameObject.transform.Find("NegativeCube").gameObject; 
         minDist = positiveGO.transform.lossyScale.y * 1.5f;
         SetRadius();
         UpdateDirectionVectors();
@@ -97,7 +96,8 @@ public class MagnetBehavior : MonoBehaviour
 
     void Pull(float amount)
     {
-        if (Mathf.Abs(Vector3.Distance(this.transform.position, player.transform.position)) <= minDist)
+        if (Mathf.Abs(Vector3.Distance(this.transform.position, player.transform.position)) <= minDist ||
+            Mathf.Abs(Vector3.Distance(this.transform.position, player.transform.position)) >= radius)
             return;
 
         Vector3 target = - playerVec;
@@ -106,7 +106,8 @@ public class MagnetBehavior : MonoBehaviour
 
     void Push(float amount)
     {
-        if (Mathf.Abs(Vector3.Distance(this.transform.position, player.transform.position)) >= radius)
+        if (Mathf.Abs(Vector3.Distance(this.transform.position, player.transform.position)) <= minDist ||
+            Mathf.Abs(Vector3.Distance(this.transform.position, player.transform.position)) >= radius)
             return;
 
         Vector3 target = playerVec;
