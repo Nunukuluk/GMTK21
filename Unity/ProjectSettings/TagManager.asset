@@ -7,11 +7,12 @@ TagManager:
   - Magnet
   - LevelManager
   - Canvas
+  - Fire
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - PostProcessing
   - Water
   - UI
   - 
