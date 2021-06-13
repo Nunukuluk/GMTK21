@@ -13,6 +13,8 @@ TagManager:
   - StartUI
   - Level
   - LevelText
+  - Info
+  - InfoBoard
   layers:
   - Default
   - TransparentFX

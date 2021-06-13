@@ -8,14 +8,17 @@ public class MouseHandler : MonoBehaviour
     private bool _hold;
     private bool rotatingMagnet;
     private bool mouseOver;
+    private bool mouseOver1;
     private int active = 0;
 
     private GameObject[] magnets; // create an array
 
     private GameObject FoundObject;
     private GameObject player;
+    private GameObject infoBoard;
 
     Ray _ray;
+    Ray _ray1;
     RaycastHit _hit;
 
     // Use this for initialization  
@@ -24,6 +27,9 @@ public class MouseHandler : MonoBehaviour
         rotatingMagnet = false;
         magnets = GameObject.FindGameObjectsWithTag("Magnet");
         player = GameObject.FindGameObjectWithTag("Player");
+        //infoBoard = GameObject.FindGameObjectWithTag("InfoBoard");
+        //infoBoard.SetActive(false);
+
     }
 
     // Update is called once per frame  
@@ -74,8 +80,8 @@ public class MouseHandler : MonoBehaviour
         }
 
         ShowRadius();
-
         ResetPlayer(magnets);
+        //InfoBox();
     }
 
     void ShowRadius()
@@ -96,6 +102,26 @@ public class MouseHandler : MonoBehaviour
         {
             FoundObject.GetComponent<MagnetBehavior>().ToggleRadius();
             mouseOver = false;
+        }
+    }
+
+    void InfoBox()
+    {
+        _ray1 = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit _hit1;
+
+        if (Physics.Raycast(_ray1, out _hit1))
+        {
+            if (_hit.transform.tag == "Info" && !mouseOver1)
+            {
+                infoBoard.SetActive(true);
+                mouseOver1 = true;
+            }
+        }
+        else if (mouseOver1)
+        {
+            infoBoard.SetActive(false);
+            mouseOver1 = false;
         }
     }
 
