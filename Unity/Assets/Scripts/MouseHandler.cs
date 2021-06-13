@@ -113,7 +113,6 @@ public class MouseHandler : MonoBehaviour
 
         if (active == 0)
         {
-            Debug.Log("ResetPlayer is called");
             player.GetComponent<CharacterBehavior>().ResetPlayer();
         }
     }
