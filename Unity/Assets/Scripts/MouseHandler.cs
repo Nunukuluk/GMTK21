@@ -8,8 +8,12 @@ public class MouseHandler : MonoBehaviour
     private bool _hold;
     private bool rotatingMagnet;
     private bool mouseOver;
+    private bool active = false;
+
+    private GameObject[] gameobjects; // create an array
 
     private GameObject FoundObject;
+    private GameObject Player;
 
     Ray _ray;
     RaycastHit _hit;
@@ -18,6 +22,7 @@ public class MouseHandler : MonoBehaviour
     void Start ()
     {
         rotatingMagnet = false;
+        gameobjects = GameObject.FindGameObjectsWithTag("Magnet");
     }
 
     // Update is called once per frame  
@@ -56,7 +61,7 @@ public class MouseHandler : MonoBehaviour
 
                 if ((Physics.Raycast(ray1, out hit1)) && (hit1.transform.tag == "Magnet"))
                 {
-                    FoundObject = hit1.transform.gameObject;// GameObject.Find(hit1.collider.gameObject.name);
+                    FoundObject = hit1.transform.gameObject; // GameObject.Find(hit1.collider.gameObject.name);
                     Debug.Log(FoundObject.name);
                     rotatingMagnet = true;
                 }
@@ -69,6 +74,8 @@ public class MouseHandler : MonoBehaviour
         }
 
         ShowRadius();
+
+        ResetPlayer(gameobjects);
     }
 
     void ShowRadius()
@@ -90,6 +97,19 @@ public class MouseHandler : MonoBehaviour
         {
             FoundObject.GetComponent<MagnetBehavior>().ToggleRadius();
             mouseOver = false;
+        }
+    }
+
+    void ResetPlayer(GameObject[] gameobjects)
+    {
+        active = false;
+        foreach (GameObject go in gameobjects)
+        {
+            active = go.GetComponent<MagnetBehavior>().magnetEnabled;
+        }
+        if (!active)
+        {
+            Player.GetComponent<CharacterBehavior>().ResetPlayer();
         }
     }
 }

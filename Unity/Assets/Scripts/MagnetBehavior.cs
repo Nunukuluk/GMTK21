@@ -102,6 +102,7 @@ public class MagnetBehavior : MonoBehaviour
 
         Vector3 target = - playerVec;
         player.transform.position += target * strength * amount * Time.deltaTime;
+        player.transform.LookAt(positiveDirGO.transform.position);
     }
 
     void Push(float amount)
@@ -112,5 +113,6 @@ public class MagnetBehavior : MonoBehaviour
 
         Vector3 target = playerVec;
         player.transform.position += target * strength * amount * Time.deltaTime;
+        player.transform.LookAt(negativeDirGO.transform.position);
     }
 }
