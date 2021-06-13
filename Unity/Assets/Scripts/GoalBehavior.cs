@@ -36,7 +36,7 @@ public class GoalBehavior : MonoBehaviour
 		{
 			elapsed += Time.fixedDeltaTime;
 
-			if (elapsed > sliderInstantiateTime)
+			if (elapsed > sliderInstantiateTime &&chargingScreen != null)
 			{
 				chargingScreen?.SetActive(true);
 				slider.value += incrementInterval;

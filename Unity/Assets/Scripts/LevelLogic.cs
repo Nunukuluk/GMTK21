@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Video;
 
 public class LevelLogic : MonoBehaviour
 {
@@ -10,9 +11,13 @@ public class LevelLogic : MonoBehaviour
     private GameObject canvas;
     private bool fading = false;
     public int numScenes = 3;
-
+    public GameObject Background;
+    private VideoPlayer videoPlayer;
     private void Start()
     {
+        Background = GameObject.Find("Background");
+        videoPlayer = Background.GetComponent<VideoPlayer>();
+        videoPlayer.url = System.IO.Path.Combine(Application.streamingAssetsPath, "Editor[23].mp4");
         canvas = GameObject.FindGameObjectWithTag("Canvas");
     }
 
@@ -54,6 +59,10 @@ public class LevelLogic : MonoBehaviour
         while (fading) yield return null;
         yield return new WaitForSeconds(1.5f);
         SceneManager.LoadScene(scene);
+        if (scene == numScenes + 1 && videoPlayer != null)
+        {
+            videoPlayer.url = System.IO.Path.Combine(Application.streamingAssetsPath, "Editor[23].mp4");
+        }
         setLevelNum(scene);
         StartCoroutine(FadeTo(0f, 1f));
     }
