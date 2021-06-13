@@ -9,6 +9,7 @@ TagManager:
   - Canvas
   - Fire
   - Charger
+  - GoalUI
   layers:
   - Default
   - TransparentFX
