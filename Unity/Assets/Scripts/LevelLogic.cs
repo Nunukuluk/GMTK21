@@ -15,21 +15,26 @@ public class LevelLogic : MonoBehaviour
         canvas = GameObject.FindGameObjectWithTag("Canvas");
     }
 
-    public void ChangeScene()
+    public void ReloadScene()
     {
-        StartCoroutine(ChangeSceneCR());
+        StartCoroutine(ChangeSceneCR(currentScene));
     }
 
-    IEnumerator ChangeSceneCR()
+    public void ChangeScene()
+    {
+        currentScene += 1;
+        StartCoroutine(ChangeSceneCR(currentScene));
+    }
+
+    IEnumerator ChangeSceneCR(int scene)
     {
         Debug.Log("Changing Scene...");
-        currentScene += 1;
         if (canvas != null)
             canvas.SetActive(false);
         StartCoroutine(FadeTo(1f, 1f));
         while (fading) yield return null;
         yield return new WaitForSeconds(1.5f);
-        SceneManager.LoadScene(currentScene);
+        SceneManager.LoadScene(scene);
         StartCoroutine(FadeTo(0f, 1f));
     }
 
