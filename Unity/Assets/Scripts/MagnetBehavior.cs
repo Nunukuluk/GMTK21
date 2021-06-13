@@ -115,7 +115,7 @@ public class MagnetBehavior : MonoBehaviour
         Vector3 target = - playerVec;
         player.transform.position += target * strength * amount * Time.deltaTime;
         player.GetComponent<Rigidbody2D>().MovePosition(player.GetComponent<Rigidbody2D>().position + new Vector2(target.x, target.y) * strength * amount * Time.fixedDeltaTime);
-        player.transform.LookAt(positiveDirGO.transform.position);
+        //player.transform.LookAt(positiveDirGO.transform.position);
     }
 
     void Push(float amount)
@@ -123,6 +123,6 @@ public class MagnetBehavior : MonoBehaviour
         Vector3 target = playerVec;
         player.transform.position += target * strength * amount * Time.deltaTime;
         player.GetComponent<Rigidbody2D>().MovePosition(player.GetComponent<Rigidbody2D>().position + new Vector2(target.x, target.y) * strength * amount * Time.fixedDeltaTime);
-        player.transform.LookAt(negativeDirGO.transform.position);
+        //player.transform.LookAt(negativeDirGO.transform.position);
     }
 }
