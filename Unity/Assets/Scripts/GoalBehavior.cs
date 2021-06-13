@@ -38,7 +38,7 @@ public class GoalBehavior : MonoBehaviour
 
 			if (elapsed > sliderInstantiateTime)
 			{
-				chargingScreen.SetActive(true);
+				chargingScreen?.SetActive(true);
 				slider.value += incrementInterval;
 			}
 		}

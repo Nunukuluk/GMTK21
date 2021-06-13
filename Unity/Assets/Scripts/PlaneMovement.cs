@@ -26,4 +26,20 @@ public class PlaneMovement : MonoBehaviour
         movement = Vector3.right * direction * speed * Time.deltaTime;
         this.transform.Translate(movement);
     }
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.transform.tag == "Player")
+        {
+            other.transform.parent = transform;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        if (other.transform.tag == "Player")
+        {
+            other.transform.parent = null;
+        }
+    }
 }
