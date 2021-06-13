@@ -449,6 +449,26 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5648740350858358375, guid: ecefcbdee5d3960419dcc21e1501bbf6, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5648740350858358375, guid: ecefcbdee5d3960419dcc21e1501bbf6, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5648740350858358375, guid: ecefcbdee5d3960419dcc21e1501bbf6, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5648740350858358375, guid: ecefcbdee5d3960419dcc21e1501bbf6, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5648740350858358375, guid: ecefcbdee5d3960419dcc21e1501bbf6, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -188.35
+      objectReference: {fileID: 0}
     - target: {fileID: 5763613862015606465, guid: ecefcbdee5d3960419dcc21e1501bbf6, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -496,6 +516,18 @@ PrefabInstance:
     - target: {fileID: 6548814676871623251, guid: ecefcbdee5d3960419dcc21e1501bbf6, type: 3}
       propertyPath: m_Name
       value: LevelPrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 7642279123859995614, guid: ecefcbdee5d3960419dcc21e1501bbf6, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7642279123859995614, guid: ecefcbdee5d3960419dcc21e1501bbf6, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7850440178962987208, guid: ecefcbdee5d3960419dcc21e1501bbf6, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ecefcbdee5d3960419dcc21e1501bbf6, type: 3}
