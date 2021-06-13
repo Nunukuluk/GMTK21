@@ -15,7 +15,6 @@ public class CharacterBehavior : MonoBehaviour
     public void ResetPlayer()
     {
         this.gameObject.transform.localRotation = Quaternion.identity;
-        Debug.Log("it is called");
         rigidbody.gravityScale = 1;
     }
 
