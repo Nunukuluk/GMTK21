@@ -9,7 +9,9 @@ public class PulsateGoal : MonoBehaviour
     public Color color2;
     float rate = 0.5f;
     public bool animate = true;
+    public bool hitGoal = false;
     float i = 0f;
+    public GameObject goal;
 
     void Start()
     {
@@ -17,7 +19,7 @@ public class PulsateGoal : MonoBehaviour
     }
     void Update()
     {
-        if (animate)
+        if (animate && !hitGoal)
         {
             i += Time.deltaTime * rate;
             renderer.material.color = Color.Lerp(color1, color2, Mathf.PingPong(i*2, 1));
@@ -34,5 +36,7 @@ public class PulsateGoal : MonoBehaviour
             }
             */
         }
+        if (goal.GetComponent<GoalBehavior>().slider.value > 0)
+            renderer.material.color = color1;
     }
 }
