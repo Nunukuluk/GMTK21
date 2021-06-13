@@ -21,6 +21,11 @@ public class LevelLogic : MonoBehaviour
         {
             ReloadScene();
         }
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            Exit();
+        }
     }
 
     public void ReloadScene()
@@ -39,6 +44,11 @@ public class LevelLogic : MonoBehaviour
         Debug.Log("Changing Scene...");
         if (canvas != null)
             canvas.SetActive(false);
+        GameObject UI = GameObject.FindGameObjectWithTag("GoalUI");
+        if (UI != null)  Debug.Log(UI.gameObject.transform.name);
+        if (UI != null)
+            Destroy(UI);
+
         StartCoroutine(FadeTo(1f, 1f));
         while (fading) yield return null;
         yield return new WaitForSeconds(1.5f);
