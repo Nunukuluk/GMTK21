@@ -56,7 +56,8 @@ public class MouseHandler : MonoBehaviour
 
                 if ((Physics.Raycast(ray1, out hit1)) && (hit1.transform.tag == "Magnet"))
                 {
-                    FoundObject = GameObject.Find(hit1.collider.gameObject.name);
+                    FoundObject = hit1.transform.gameObject;// GameObject.Find(hit1.collider.gameObject.name);
+                    Debug.Log(FoundObject.name);
                     rotatingMagnet = true;
                 }
 
@@ -79,7 +80,8 @@ public class MouseHandler : MonoBehaviour
         {
             if (_hit.transform.tag == "Magnet" && !mouseOver)
             {
-                FoundObject = GameObject.Find(_hit.collider.gameObject.name);
+                FoundObject = _hit.transform.gameObject; //GameObject.Find(_hit.collider.gameObject.name);
+                Debug.Log(FoundObject.name);
                 FoundObject.GetComponent<MagnetBehavior>().ToggleRadius();
                 mouseOver = true;
             }
