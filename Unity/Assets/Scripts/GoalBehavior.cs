@@ -10,7 +10,7 @@ public class GoalBehavior : MonoBehaviour
     public float sliderInstantiateTime = 1f;
     float elapsed;
 
-    private float incrementInterval = 0.02f;
+    private float incrementInterval = 0.01f;
 
     // Start is called before the first frame update
     void Start()
