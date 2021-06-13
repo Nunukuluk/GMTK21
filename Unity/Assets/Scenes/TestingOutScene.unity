@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028305, g: 0.22571313, b: 0.3069213, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -243,18 +243,6 @@ PrefabInstance:
     - target: {fileID: 2178122679112712607, guid: 276fecb4d34616d4fac0f8eeea118085, type: 3}
       propertyPath: m_Name
       value: MagnetPrefab
-      objectReference: {fileID: 0}
-    - target: {fileID: 2178122679190718212, guid: 276fecb4d34616d4fac0f8eeea118085, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2178122679190718212, guid: 276fecb4d34616d4fac0f8eeea118085, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2178122679190718216, guid: 276fecb4d34616d4fac0f8eeea118085, type: 3}
-      propertyPath: strength
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2178122679190718218, guid: 276fecb4d34616d4fac0f8eeea118085, type: 3}
       propertyPath: m_Materials.Array.data[0]
