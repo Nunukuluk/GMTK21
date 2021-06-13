@@ -29,12 +29,15 @@ public class GoalBehavior : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        elapsed += Time.fixedDeltaTime;
-
-        if (elapsed > sliderInstantiateTime)
+        if (other.tag == "Charger")
         {
-            chargingScreen.SetActive(true);
-            slider.value += incrementInterval;
+            elapsed += Time.fixedDeltaTime;
+
+            if (elapsed > sliderInstantiateTime)
+            {
+                chargingScreen.SetActive(true);
+                slider.value += incrementInterval;
+            }
         }
     }
 
