@@ -27,7 +27,7 @@ public class GoalBehavior : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerStay2D(Collider2D other)
     {
         elapsed += Time.fixedDeltaTime;
 
@@ -38,7 +38,7 @@ public class GoalBehavior : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit2D(Collider2D other)
     {
         elapsed = 0;
         chargingScreen.SetActive(false);
